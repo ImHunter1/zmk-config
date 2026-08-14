@@ -1,0 +1,158 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    behaviors {
+        // One-shot modifiers
+        os_lctl: os_lctl {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+        };
+
+        os_lalt: os_lalt {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+        };
+
+        os_lsft: os_lsft {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+        };
+
+        os_ralt: os_ralt {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <1000>;
+        };
+
+        // Thumb layer-taps
+        lower_tab: lower_tab {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <280>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+        };
+
+        raise_bspc: raise_bspc {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <280>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Left Ctrl when held, Escape when tapped
+        ctl_esc: ctl_esc {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // J + K = Escape
+        jk_esc {
+            timeout-ms = <50>;
+            key-positions = <7 8>;
+            bindings = <&kp ESC>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // ============================================================
+        // QWERTY
+        // ============================================================
+        qwerty_layer {
+            bindings = <
+                &kp TAB       &kp Q        &kp W        &kp E        &kp R        &kp T
+                &kp Y        &kp U        &kp I        &kp O        &kp P        &kp DEL
+
+                &os_lalt LALT &kp A        &kp S        &kp D        &kp F        &kp G
+                &kp H        &kp J        &kp K        &kp L        &kp SQT       &os_ralt RALT
+
+                &os_lsft LSHIFT &kp Z      &kp X        &kp C        &kp V        &kp B
+                &kp N        &kp M        &kp COMMA    &kp DOT      &kp SLASH     &sl FUNC
+
+                &os_lctl LCTRL &mt LGUI ENTER &lower_tab LOWER TAB
+                &raise_bspc RAISE BSPC       &kp SPACE    &os_lsft LSHIFT
+            >;
+        };
+
+        // ============================================================
+        // LOWER
+        // ============================================================
+        lower_layer {
+            bindings = <
+                &trans      &kp EXCL      &kp AT       &kp HASH     &kp DLLR     &kp PERCENT
+                &kp CARET   &kp AMPERSAND  &kp ASTERISK &kp LPAR      &kp RPAR      &trans
+
+                &trans      &kp N1        &kp N2       &kp N3        &kp N4        &kp N5
+                &kp N6      &kp N7        &kp N8       &kp N9        &kp N0        &trans
+
+                &trans      &none         &kp TILDE    &kp GRAVE     &kp LBKT      &kp LBRC
+                &kp RBRC    &kp RBKT      &kp COMMA    &kp DOT       &kp SLASH     &trans
+
+                &trans      &trans        &mo LOWER
+                &trans      &trans        &kp COLON
+            >;
+        };
+
+        // ============================================================
+        // RAISE
+        // ============================================================
+        raise_layer {
+            bindings = <
+                &trans      &kp DEL       &none        &kp UNDERSCORE &kp PLUS      &kp PG_UP
+                &none       &none         &none        &kp BACKSLASH  &kp PIPE      &trans
+
+                &trans      &kp HOME      &kp END      &kp MINUS      &kp EQUAL     &kp PG_DN
+                &kp LEFT    &kp DOWN      &kp UP       &kp RIGHT      &kp K_APP     &trans
+
+                &trans      &kp LT        &kp GT       &kp C           &kp V         &kp SEMICOLON
+                &kp C_PLAY_PAUSE &kp C_PREV &kp C_NEXT &kp C_VOL_DN   &kp C_VOL_UP  &trans
+
+                &mt LCTRL ESC &trans      &none
+                &mo RAISE     &trans      &trans
+            >;
+        };
+
+        // ============================================================
+        // FUNCTION
+        // ============================================================
+        func_layer {
+            bindings = <
+                &trans      &kp F1       &kp F2       &kp F3       &kp F4       &kp F5
+                &kp F6      &kp F7       &kp F8       &kp F9       &kp F10      &trans
+
+                &trans      &kp F11      &kp F12      &none         &none         &none
+                &none       &none        &none        &none         &none         &trans
+
+                &trans      &kp CAPS     &none         &none         &none         &none
+                &none       &none        &none        &none         &kp C_RESET  &none
+
+                &none       &none         &none
+                &none       &mo FUNC      &none
+            >;
+        };
+    };
+};
