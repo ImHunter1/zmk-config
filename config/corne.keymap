@@ -91,7 +91,7 @@
                 &kp H        &kp J        &kp K        &kp L        &kp SQT       &os_ralt RALT
 
                 &os_lsft LSHIFT &kp Z      &kp X        &kp C        &kp V        &kp B
-                &kp N        &kp M        &kp COMMA    &kp DOT      &kp SLASH     &sl FUNC
+                &kp N        &kp M        &kp COMMA    &kp DOT      &kp SLASH     &sl 3
 
                 &os_lctl LCTRL &mt LGUI ENTER &lower_tab LOWER TAB
                 &raise_bspc RAISE BSPC       &kp SPACE    &os_lsft LSHIFT
