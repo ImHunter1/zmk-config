@@ -81,7 +81,6 @@
 
         compatible = "zmk,behavior-hold-tap";
     };
-};
 keymap {
     compatible = "zmk,keymap";
 
