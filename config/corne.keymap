@@ -82,13 +82,6 @@
         compatible = "zmk,behavior-hold-tap";
     };
 };
-
-combos {
-    compatible = "zmk,combos";
-
-    // J + K = Escape
-};
-
 keymap {
     compatible = "zmk,keymap";
 
