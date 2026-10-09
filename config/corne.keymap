@@ -83,6 +83,15 @@
     // Keymap
     // ================================================================
 
+    macros {
+        arrow: arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp GT>;
+            label = "ARROW";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -118,10 +127,10 @@
 
         raise_layer {
             bindings = <
-&trans  &kp DEL   &none    &kp UNDERSCORE  &kp PLUS   &kp PG_UP        &none             &none       &none       &kp BACKSLASH  &kp PIPE      &trans
-&trans  &kp HOME  &kp END  &kp MINUS       &kp EQUAL  &kp PG_DN        &kp LEFT          &kp DOWN    &kp UP      &kp RIGHT      &kp K_APP     &trans
-&trans  &kp LT    &kp GT   &kp C           &kp V      &kp SEMICOLON    &kp C_PLAY_PAUSE  &kp C_PREV  &kp C_NEXT  &kp C_VOL_DN   &kp C_VOL_UP  &trans
-                           &mt LCTRL ESC   &trans     &trans           &mo RAISE         &trans      &trans
+&trans  &kp DEL   &none    &kp UNDERSCORE  &kp PLUS         &kp PG_UP        &none             &none       &none       &kp BACKSLASH  &kp PIPE      &trans
+&trans  &kp HOME  &kp END  &kp MINUS       &kp EQUAL        &kp PG_DN        &kp LEFT          &kp DOWN    &kp UP      &kp RIGHT      &kp K_APP     &trans
+&trans  &kp LT    &kp GT   &arrow          &kp EXCLAMATION  &kp SEMICOLON    &kp C_PLAY_PAUSE  &kp C_PREV  &kp C_NEXT  &kp C_VOL_DN   &kp C_VOL_UP  &trans
+                           &mt LCTRL ESC   &trans           &trans           &mo RAISE         &trans      &trans
             >;
         };
 
